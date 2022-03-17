@@ -32,6 +32,7 @@ namespace Roommates
                         Console.Write("Press any key to continue");
                         Console.ReadKey();
                         break;
+
                     case ("Search for room"):
                         Console.Write("Room Id: ");
                         int id = int.Parse(Console.ReadLine());
@@ -42,6 +43,7 @@ namespace Roommates
                         Console.Write("Press any key to continue");
                         Console.ReadKey();
                         break;
+
                     case ("Add a room"):
                         Console.Write("Room name: ");
                         string name = Console.ReadLine();
@@ -61,6 +63,7 @@ namespace Roommates
                         Console.Write("Press any key to continue");
                         Console.ReadKey();
                         break;
+
                     case ("Search for roommate"):
                         Console.Write("Roommate Id: ");
                         int mateId = int.Parse(Console.ReadLine());
@@ -71,6 +74,7 @@ namespace Roommates
                         Console.Write("Press any key to continue");
                         Console.ReadKey();
                         break;
+
                     case ("Show all chores"):
                         List<Chore> chores = choreRepo.GetAll();
                         foreach (Chore c in chores)
@@ -80,6 +84,7 @@ namespace Roommates
                         Console.Write("Press any key to continue");
                         Console.ReadKey();
                         break;
+
                     case ("Show all unassigned chores"):
                         List<Chore> unassignedChores = choreRepo.GetUnassignedChores();
                         foreach (Chore c in unassignedChores)
@@ -89,6 +94,7 @@ namespace Roommates
                         Console.Write("Press any key to continue");
                         Console.ReadKey();
                         break;
+
                     case ("Search for chore"):
                         Console.Write("Chore Id: ");
                         int choreId = int.Parse(Console.ReadLine());
@@ -97,6 +103,7 @@ namespace Roommates
                         Console.Write("Press any key to continue");
                         Console.ReadKey();
                         break;
+
                     case ("Add a chore"):
                         Console.Write("Chore name: ");
                         string choreName = Console.ReadLine();
@@ -109,6 +116,28 @@ namespace Roommates
                         Console.Write("Press any key to continue");
                         Console.ReadKey();
                         break;
+
+                    case ("Assign chore to roommate"):
+                        List<Chore> allChores = choreRepo.GetAll();
+                        foreach (Chore c in allChores)
+                        {
+                            Console.WriteLine($"{c.Id}. {c.Name}");
+                        }
+                        Console.Write("Select a chore: ");
+                        int choreChoice = int.Parse(Console.ReadLine());
+                        List<Roommate> allRoommates = roommateRepository.GetAll();
+                        foreach (Roommate r in allRoommates)
+                        {
+                            Console.WriteLine($"{r.Id}. {r.FirstName}");
+                        }
+                        Console.Write("Select a roommate: ");
+                        int roommateChoice = int.Parse(Console.ReadLine());
+                        choreRepo.AssignChore(roommateChoice, choreChoice);
+                        Console.WriteLine("Success! ");
+                        Console.Write("Press any key to continue");
+                        Console.ReadKey();
+                        break;
+
                     case ("Exit"):
                         runProgram = false;
                         break;
@@ -131,6 +160,7 @@ namespace Roommates
                 "Show all unassigned chores",
                 "Search for chore",
                 "Add a chore",
+                "Assign chore to roommate",
                 "Exit"
             };
 

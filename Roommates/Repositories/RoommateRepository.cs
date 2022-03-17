@@ -24,7 +24,7 @@ namespace Roommates.Repositories
                         while (reader.Read())
                         {
                             int idValue = reader.GetInt32(reader.GetOrdinal("Id"));
-                            string firstNameValue = reader.GetString(reader.GetOrdinal("Name"));
+                            string firstNameValue = reader.GetString(reader.GetOrdinal("FirstName"));
                             Roommate mate = new Roommate
                             {
                                 Id = idValue,
