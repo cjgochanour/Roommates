@@ -156,6 +156,41 @@ namespace Roommates
                         Console.ReadKey();
                         break;
 
+                    case ("Update a chore"):
+                        List<Chore> choreOptions = choreRepo.GetAll();
+                        foreach (Chore c in choreOptions)
+                        {
+                            Console.WriteLine($"{c.Id} - {c.Name}");
+                        }
+
+                        Console.Write("Which room would you like to update? ");
+                        int selectedChoreId = int.Parse(Console.ReadLine());
+                        Chore selectedChore = choreOptions.FirstOrDefault(c => c.Id == selectedChoreId);
+
+                        Console.Write("New Name: ");
+                        selectedChore.Name = Console.ReadLine();
+
+                        choreRepo.Update(selectedChore);
+
+                        Console.WriteLine("Chore has been successfully updated");
+                        Console.Write("Press any key to continue");
+                        Console.ReadKey();
+                        break;
+
+                    case ("Delete a chore"):
+                        List<Chore> choresToDelete = choreRepo.GetAll();
+                        foreach (Chore c in choresToDelete)
+                        {
+                            Console.WriteLine($"{c.Id}. {c.Name}");
+                        }
+                        Console.Write("Select a chore for deletion: ");
+                        int deleteChoreId = int.Parse(Console.ReadLine());
+                        choreRepo.Delete(deleteChoreId);
+                        Console.WriteLine($"Chore {deleteChoreId} deleted! ");
+                        Console.Write("Press any key to continue");
+                        Console.ReadKey();
+                        break;
+
                     case ("Assign chore to roommate"):
                         List<Chore> allChores = choreRepo.GetAll();
                         foreach (Chore c in allChores)
@@ -201,6 +236,8 @@ namespace Roommates
                 "Show all unassigned chores",
                 "Search for chore",
                 "Add a chore",
+                "Update a chore",
+                "Delete a chore",
                 "Assign chore to roommate",
                 "Exit"
             };
