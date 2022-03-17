@@ -96,7 +96,7 @@ namespace Roommates.Repositories
                 conn.Open();
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"SELECT DISTINCT Chore.Name
+                    cmd.CommandText = @"SELECT DISTINCT Chore.Id, Chore.Name
                                         FROM Chore
                                         LEFT JOIN RoommateChore ON Chore.Id = RoommateChore.ChoreId
                                         WHERE ChoreId IS NULL";
