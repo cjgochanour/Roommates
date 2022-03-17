@@ -89,6 +89,7 @@ namespace Roommates.Repositories
                 }
             }
         }
+        public void AssignChore()
         public List<Chore> GetUnassignedChores()
         {
             using (SqlConnection conn = Connection)
