@@ -134,6 +134,16 @@ namespace Roommates
                         Console.ReadKey();
                         break;
 
+                    case ("Show chore assignment count"):
+                        Dictionary<string, int> choreCount = choreRepo.GetChoreCounts();
+                        foreach (KeyValuePair<string, int> c in choreCount)
+                        {
+                            Console.WriteLine($"{c.Key}: {c.Value}");
+                        }
+                        Console.Write("Press any key to continue");
+                        Console.ReadKey();
+                        break;
+
                     case ("Search for chore"):
                         Console.Write("Chore Id: ");
                         int choreId = int.Parse(Console.ReadLine());
@@ -234,6 +244,7 @@ namespace Roommates
                 "Search for roommate",
                 "Show all chores",
                 "Show all unassigned chores",
+                "Show chore assignment count",
                 "Search for chore",
                 "Add a chore",
                 "Update a chore",
